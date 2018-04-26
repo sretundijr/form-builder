@@ -1,0 +1,18 @@
+
+.form-builder-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.tool-box-container {
+  width: 40vw;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+.form-container {
+  width: 40vw;
+  height: 100vh;  
+  border: 1px solid black;
+}
