@@ -5,7 +5,7 @@ import { getAllFormTypes } from './form-model';
 class FormSelection extends Component {
 
   formSelectionBtn() {
-    return getAllFormTypes().map(item => <button>{item}</button>)
+    return getAllFormTypes().map(item => <button key={item}>{item}</button>)
   }
 
   render() {

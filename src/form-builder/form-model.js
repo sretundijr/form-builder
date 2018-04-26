@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 
-const formTagList = () => {
+const formTagList = (formObj = '') => {
   return [
     {
-      type: 'input',
-      element: <input />
+      type: 'Text Input',
+      label: formObj.label,
+      element: <input />,
     },
     {
-      type: 'submit',
+      type: 'Submit',
+      label: formObj.label,
       element: <button>Submit</button>,
-    }
+    },
+    {
+      type: 'Radio List',
+      label: formObj.label,
+      element: <input type="radio" value="" />,
+    },
+    {
+      type: 'Drop Down List',
+      label: formObj.label,
+      element: <select></select>,
+    },
   ]
 }
 
