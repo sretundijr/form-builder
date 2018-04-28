@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { getAllFormTypes } from './form-model';
 
@@ -17,14 +17,28 @@ const formSelectionBtn = (props) => {
   )
 }
 
+const renderElementOptions = (options) => {
+  if (options) {
+    return (
+      <div>
+        <p>hello</p>
+        <input name="options" type="text" value="" />
+      </div>
+    )
+  }
+  return '';
+}
+
 // todo submit button need a label??
-const RenderLabel = (props) => {
-  if (props.userSelection) {
+const RenderElementCreationForm = (props) => {
+  console.log(props);
+  if (props.selectedElement) {
     return (
       <div>
         <form className="element-creation-form" onSubmit={props.onSubmit}>
-          <label>Please add a label for the {props.userSelection}</label>
-          <input className="label-input" type="text" onChange={props.onChange} value={props.value} />
+          <label>Please add a label for the {props.selectedElement.type}</label>
+          <input name="label" className="label-input" type="text" onChange={props.onChange} value={props.value} />
+          {renderElementOptions(props.selectedElement.options)}
           <input className="form-selection-btn" type="submit" value="submit" />
         </form>
       </div>
@@ -42,4 +56,4 @@ const FormSelection = (props) => {
   );
 }
 
-export { FormSelection, RenderLabel };
+export { FormSelection, RenderElementCreationForm };
