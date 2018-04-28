@@ -1,0 +1,12 @@
+.element-creation-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-selection-btn {
+  margin: 10px;
+}
+
+.label-input {
+  margin: 10px;
+}

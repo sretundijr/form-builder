@@ -2,32 +2,48 @@ import React, { Component } from 'react';
 
 import { FormSelection, RenderLabel } from './form-selection';
 
-import './form-builder.css';
+import './styles/form-builder.css';
 
 class FormBuilder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userSelections: [],
+      label: '',
+      userSelection: '',
+      elementList: [],
     }
     this.handleFormComponentSelection = this.handleFormComponentSelection.bind(this);
+    this.handleElementCreation = this.handleElementCreation.bind(this);
+    this.handleLabelChange = this.handleLabelChange.bind(this);
   }
   handleFormComponentSelection(e) {
-    console.log(e.target.value)
-    const userSelection = {
-      formType: e.target.value
-    }
-    this.setState((prevState) => {
-      return {
-        userSelections: [...prevState.userSelections, userSelection]
-      }
+    this.setState({
+      userSelection: e.target.value,
     })
   }
-  handleLabelCreation(e) {
-    console.log(e.target);
+
+  handleLabelChange(e) {
+    this.setState({
+      label: e.target.value,
+    })
   }
+
+  handleElementCreation(e) {
+    e.preventDefault();
+
+    this.setState((prevState) => {
+      const elementObj = {
+        userSelection: prevState.userSelection,
+        label: prevState.label,
+      }
+      return {
+        elementList: [...prevState.elementList, elementObj]
+      }
+    });
+  }
+
   render() {
-    console.log(this.state.userSelections);
+    console.log(this.state.elementList);
     return (
       <div className="form-builder-container">
         <div className="tool-box-container">
@@ -35,12 +51,10 @@ class FormBuilder extends Component {
             onClick={this.handleFormComponentSelection}
           />
           <RenderLabel
-            onChange={this.handleLabelCreation}
-            userSelection={
-              this.state.userSelections ?
-                this.state.userSelections[this.state.userSelections.length - 1] :
-                ''
-            }
+            onSubmit={this.handleElementCreation}
+            userSelection={this.state.userSelection}
+            onChange={this.handleLabelChange}
+            value={this.state.label}
           />
         </div>
         <div className="form-container">
