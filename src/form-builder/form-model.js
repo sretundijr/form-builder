@@ -5,22 +5,22 @@ const formTagList = (formObj = '') => {
     {
       type: 'Text Input',
       label: formObj.label,
-      element: <input />,
+      element: () => <input />,
     },
     {
       type: 'Submit',
       label: formObj.label,
-      element: <button>Submit</button>,
+      element: () => <button>Submit</button>,
     },
     {
       type: 'Radio List',
       label: formObj.label,
-      element: <input type="radio" value="" />,
+      element: () => <input type="radio" value="" />,
     },
     {
       type: 'Drop Down List',
       label: formObj.label,
-      element: <select></select>,
+      element: (optionsList) => <select>{optionsList.map(item => item)}</select>,
     },
   ]
 }
