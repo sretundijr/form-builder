@@ -17,7 +17,6 @@ const renderElementList = (list) => {
 }
 
 const FormView = (props) => {
-  console.log(props.elementList)
   return (
     <div>
       {renderElementList(props.elementList)}

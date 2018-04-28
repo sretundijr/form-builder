@@ -14,14 +14,11 @@ class FormBuilder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      label: '',
-      elementOptions: [],
       selectedElement: '',
       elementList: [],
     }
     this.handleFormComponentSelection = this.handleFormComponentSelection.bind(this);
     this.handleElementCreation = this.handleElementCreation.bind(this);
-    this.handleLabelChange = this.handleLabelChange.bind(this);
   }
 
   returnSelectedElement(selection) {
@@ -34,36 +31,24 @@ class FormBuilder extends Component {
     })
   }
 
-  handleLabelChange(e) {
-    if (e.target.name === 'options') {
-      this.setState((prevState) => {
-        return { elementOptions: [...prevState.elementOptions, e.target.value] }
-      });
-    } else {
-      this.setState({
-        label: e.target.value,
-      })
-    }
-  }
-
-  handleElementCreation(e) {
+  handleElementCreation(e, formState) {
     e.preventDefault();
-
     // todo may not need the callback here, use current state
     // and possibly combine label and element options into selected element object
     this.setState((prevState) => {
       const elementObj = {
         selectedElement: prevState.selectedElement,
-        label: prevState.label,
-        elementOptions: prevState.elementOptions,
+        label: formState.label,
+        elementOptions: formState.options,
       }
       return {
-        elementList: [...prevState.elementList, elementObj]
+        elementList: [...prevState.elementList, elementObj],
       }
     });
   }
 
   render() {
+    // console.log(this.state);
     return (
       <div className="form-builder-container">
         <div className="tool-box-container">
@@ -73,8 +58,6 @@ class FormBuilder extends Component {
           <RenderElementCreationForm
             onSubmit={this.handleElementCreation}
             selectedElement={this.state.selectedElement}
-            onChange={this.handleLabelChange}
-            value={this.state.label}
           />
         </div>
         <div className="form-container">
