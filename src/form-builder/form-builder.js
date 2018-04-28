@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { FormSelection, RenderElementCreationForm } from './form-selection';
+import { FormSelection } from './form-selection';
+
+import { RenderElementCreationForm } from './element-creation-form';
 
 import { FormView } from './form-view';
 
@@ -33,7 +35,6 @@ class FormBuilder extends Component {
   }
 
   handleLabelChange(e) {
-    console.log(e.target.name)
     if (e.target.name === 'options') {
       this.setState((prevState) => {
         return { elementOptions: [...prevState.elementOptions, e.target.value] }
