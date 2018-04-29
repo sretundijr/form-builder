@@ -4,6 +4,7 @@ import { getAllFormTypes } from './form-model';
 
 import './styles/form-selection.css';
 
+// todo rename file and function names
 const formSelectionBtn = (props) => {
   return getAllFormTypes().map(item =>
     <button

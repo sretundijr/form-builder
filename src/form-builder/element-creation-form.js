@@ -21,6 +21,24 @@ class RenderElementCreationForm extends Component {
     })
   }
 
+  handleOptionsChangeEvent(e) {
+    this.setState({
+      option: e.target.value
+    })
+  }
+
+  handleFormSubmit(e) {
+    e.preventDefault();
+    const formState = {
+      label: this.state.label,
+      options: this.state.options,
+    }
+    this.setState({
+      label: '',
+      options: [],
+    }, this.props.onSubmit(formState))
+  }
+
   addOption() {
     const currentOption = this.state.option;
     this.setState((prevState) => {
@@ -28,12 +46,6 @@ class RenderElementCreationForm extends Component {
         options: [...prevState.options, currentOption],
         option: '',
       }
-    })
-  }
-
-  handleOptionsChangeEvent(e) {
-    this.setState({
-      option: e.target.value
     })
   }
 
@@ -68,13 +80,6 @@ class RenderElementCreationForm extends Component {
       )
     }
     return '';
-  }
-
-  handleFormSubmit(e) {
-    e.preventDefault();
-    this.setState({
-      label: '',
-    }, this.props.onSubmit(this.state))
   }
 
   // todo add option for user to make the field required or not

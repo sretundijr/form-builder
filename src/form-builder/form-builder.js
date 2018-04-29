@@ -35,9 +35,6 @@ class FormBuilder extends Component {
     // todo may not need the callback here, use current state
     // and possibly combine label and element options into selected element object
     // needs error handling
-    // if (formState.label && (this.state.selectedElement.options && formState.options > 0)) {
-    //   console.log('ready to submit');
-    // }
     this.setState((prevState) => {
       const elementObj = {
         selectedElement: prevState.selectedElement,
