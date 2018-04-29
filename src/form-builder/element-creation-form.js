@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
 // todo submit button need a label??
+// todo add event for required radio input
 class RenderElementCreationForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       label: '',
+      requiredField: true,
       option: '',
       options: [],
     }
@@ -102,6 +104,13 @@ class RenderElementCreationForm extends Component {
               onChange={this.handleLabelChangeEvent}
               value={this.state.label}
             />
+            <div>
+              <p>Is this field required, default is Yes</p>
+              <label>Yes</label>
+              <input type="radio" value="true" />
+              <label>No</label>
+              <input type="radio" value="false" />
+            </div>
             {this.renderOptions()}
             {this.renderElementOptions(this.props.selectedElement.options)}
             <input className="form-selection-btn" type="submit" value="submit" />
