@@ -14,6 +14,7 @@ class RenderElementCreationForm extends Component {
     this.addOption = this.addOption.bind(this);
   }
 
+  // todo clear label after submit
   handleLabelChangeEvent(e) {
     this.setState({
       label: e.target.value,
@@ -68,6 +69,7 @@ class RenderElementCreationForm extends Component {
     return '';
   }
 
+  // todo add option for user to make the field required or not
   render() {
     // console.log(this.state);
     if (this.props.selectedElement) {
