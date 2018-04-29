@@ -35,6 +35,10 @@ class FormBuilder extends Component {
     e.preventDefault();
     // todo may not need the callback here, use current state
     // and possibly combine label and element options into selected element object
+    // needs error handling
+    // if (formState.label && (this.state.selectedElement.options && formState.options > 0)) {
+    //   console.log('ready to submit');
+    // }
     this.setState((prevState) => {
       const elementObj = {
         selectedElement: prevState.selectedElement,
@@ -48,7 +52,7 @@ class FormBuilder extends Component {
   }
 
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     return (
       <div className="form-builder-container">
         <div className="tool-box-container">

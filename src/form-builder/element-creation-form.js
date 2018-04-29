@@ -79,6 +79,7 @@ class RenderElementCreationForm extends Component {
           >
             <label>Please add a label for the {this.props.selectedElement.type}</label>
             <input
+              required
               name="label"
               className="label-input"
               type="text"
