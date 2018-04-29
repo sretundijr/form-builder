@@ -6,7 +6,7 @@ import { RenderElementCreationForm } from './element-creation-components/element
 
 import { FormView } from './form-view';
 
-import { formTagList } from './form-model';
+import { getAllFormTypes, formTagList } from './form-model';
 
 import './styles/form-builder.css';
 
@@ -53,6 +53,7 @@ class FormBuilder extends Component {
       <div className="form-builder-container">
         <div className="tool-box-container">
           <FormSelection
+            list={getAllFormTypes()}
             onClick={this.handleFormComponentSelection}
           />
           <RenderElementCreationForm

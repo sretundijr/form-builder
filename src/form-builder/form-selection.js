@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { getAllFormTypes } from './form-model';
+// import { getAllFormTypes } from './form-model';
 
 import './styles/form-selection.css';
 
 // todo rename file and function names
 const formSelectionBtn = (props) => {
-  return getAllFormTypes().map(item =>
+  return props.list.map(item =>
     <button
       onClick={props.onClick}
       key={item}
