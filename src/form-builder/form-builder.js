@@ -31,8 +31,8 @@ class FormBuilder extends Component {
     })
   }
 
-  handleElementCreation(e, formState) {
-    e.preventDefault();
+  handleElementCreation(formState) {
+    // e.preventDefault();
     // todo may not need the callback here, use current state
     // and possibly combine label and element options into selected element object
     // needs error handling
@@ -52,7 +52,7 @@ class FormBuilder extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div className="form-builder-container">
         <div className="tool-box-container">
