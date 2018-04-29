@@ -5,33 +5,27 @@ const formTagList = (formObj = '') => {
     {
       type: 'Text Input',
       options: false,
-
-      // label: formObj.label,
-      // element: () => <input />,
+      element: (formObj) => <input type="text" name={formObj.label} />,
     },
     {
       type: 'Submit',
       options: false,
-
-      // label: formObj.label,
-      // element: () => <button>Submit</button>,
+      element: (formObj) => <button>Submit</button>,
     },
     {
       type: 'Radio List',
       options: true,
-      // label: formObj.label,
-      // element: () => <input type="radio" value="" />,
+      element: (formObj) => <input type="radio" value="" />,
     },
     {
       type: 'Drop Down List',
       options: true,
-      // label: formObj.label,
-      // element: (optionsList) => <select>{optionsList.map(item => item)}</select>,
+      element: (formObj) => {
+        return (<select>{formObj.elementOptions.map(item => <option>{item}</option>)}</select>)
+      },
     },
   ]
 }
-
-
 
 const getAllFormTypes = () => {
   return formTagList().map(item => item.type);

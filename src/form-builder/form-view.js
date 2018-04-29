@@ -1,14 +1,17 @@
 import React from 'react';
 
+import { formTagList } from './form-model';
+
 // todo refactor condtional
 const renderElementList = (list) => {
+  // console.log(list);
   if (list.length > 0) {
-    return list.map((item) => {
-      // todo add key
+    return list.map((item, index) => {
       return (
-        <div>
+        <div key={`${item.label}-${index}`}>
           <p>{item.label}</p>
-          <p>{item.selectedElement.type}</p>
+          {/* todo find a better way */}
+          {item.selectedElement.element(item)}
         </div>
       );
     })
