@@ -3,13 +3,20 @@ import React from 'react';
 // todo add name fields and other html properties
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
 // todo implement radio input
-// todo modify label 
+// todo refactor label element
 const formTagList = (formObj = '') => {
   return [
     {
       type: 'Text Input',
       options: false,
-      element: (formObj) => <input type="text" name={formObj.label} />,
+      element: (formObj) => {
+        return (
+          <div>
+            <label>{formObj.label}</label>
+            <input type="text" name={formObj.label} />
+          </div>
+        )
+      },
     },
     {
       type: 'Submit',
@@ -21,7 +28,10 @@ const formTagList = (formObj = '') => {
       options: true,
       element: (formObj) => {
         return (
-          <input type="radio" value={formObj.elementOptions[0]} />
+          <div>
+            <label>{formObj.label}</label>
+            <input type="radio" value={formObj.elementOptions[0]} />
+          </div>
         )
       },
     },
@@ -30,15 +40,18 @@ const formTagList = (formObj = '') => {
       options: true,
       element: (formObj) => {
         return (
-          <select name="">
-            {
-              formObj.elementOptions.map((item, index) => {
-                return (
-                  <option key={`drop-down-options-${index}`} value={item}>{item}</option>
-                )
-              })
-            }
-          </select>
+          <div>
+            <label>{formObj.label}:</label>
+            <select name="">
+              {
+                formObj.elementOptions.map((item, index) => {
+                  return (
+                    <option key={`drop-down-options-${index}`} value={item}>{item}</option>
+                  )
+                })
+              }
+            </select>
+          </div>
         )
       },
     },
