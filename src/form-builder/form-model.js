@@ -2,9 +2,14 @@ import React from 'react';
 
 // todo add name fields and other html properties
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
-// todo implement radio input
-// todo refactor label element
-const formTagList = (formObj = '') => {
+// todo add for to label, attribute should match the id of the corresponding form element
+// todo add id's for all form elements ^^^
+// todo textarea needs rows and cols
+// todo see data list http://www-db.deis.unibo.it/courses/TW/DOCS/w3schools/html/html_form_elements.asp.html
+// 
+// elements can be added here.  the element method gets called from form-view
+// the formObj is created in element-creation-form and passed up to form-builder
+const formTagList = () => {
   return [
     {
       type: 'Text Input',
@@ -29,8 +34,17 @@ const formTagList = (formObj = '') => {
       element: (formObj) => {
         return (
           <div>
-            <label>{formObj.label}</label>
-            <input type="radio" value={formObj.elementOptions[0]} />
+            <p>{formObj.label}</p>
+            {
+              formObj.elementOptions.map((item, index) => {
+                return (
+                  <div key={`radio-element-${index}`}>
+                    <input type="radio" value={item} />
+                    <label>{item}</label>
+                  </div>
+                )
+              })
+            }
           </div>
         )
       },

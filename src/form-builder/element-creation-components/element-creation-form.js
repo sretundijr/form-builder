@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
+import { unorderedList, textInput } from './form-elements';
+
 // todo submit button need a label??
-// todo add event for required radio input
+// todo add event for required options
 class RenderElementCreationForm extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +31,7 @@ class RenderElementCreationForm extends Component {
     })
   }
 
+  // todo need atleast one option for radio or drop list before submission
   handleFormSubmit(e) {
     e.preventDefault();
     const formState = {
@@ -51,15 +54,19 @@ class RenderElementCreationForm extends Component {
     })
   }
 
-  renderElementOptions(options) {
+  // todo refactor options name isOptions??
+  renderElementOptionsInput(options) {
     if (options) {
+      const inputAttributes = {
+        label: 'You have selected a form element that requires options',
+        name: 'options',
+        id: 'options-input',
+        value: this.state.option,
+        isRequired: false,
+      }
       return (
         <div>
-          <input
-            name="options"
-            type="text"
-            onChange={this.handleOptionsChangeEvent}
-            value={this.state.option} />
+          {textInput(inputAttributes, this.handleOptionsChangeEvent)}
           <button type="button" onClick={this.addOption}>Add</button>
         </div>
       )
@@ -67,27 +74,20 @@ class RenderElementCreationForm extends Component {
     return '';
   }
 
-  renderOptions() {
-    if (this.state.options.length > 0) {
-      return (
-        <div>
-          <ul>
-            {this.state.options.map((item, index) => {
-              return (
-                <li key={`options-list-${index}`}>{item}</li>
-              )
-            })}
-          </ul>
-        </div>
-      )
-    }
-    return '';
+  renderLabelInput(type) {
+    const inputAttributes = {
+      label: `Please add a label for the ${type}`,
+      name: 'label',
+      id: 'label-input',
+      value: this.state.label,
+      isRequired: true,
+    };
+    return textInput(inputAttributes, this.handleLabelChangeEvent);
   }
 
   // todo add option for user to make the field required or not
   // todo add name field
   render() {
-    // console.log(this.state);
     if (this.props.selectedElement) {
       return (
         <div>
@@ -95,15 +95,8 @@ class RenderElementCreationForm extends Component {
             className="element-creation-form"
             onSubmit={this.handleFormSubmit}
           >
-            <label>Please add a label for the {this.props.selectedElement.type}</label>
-            <input
-              required
-              name="label"
-              className="label-input"
-              type="text"
-              onChange={this.handleLabelChangeEvent}
-              value={this.state.label}
-            />
+            {this.renderLabelInput(this.props.selectedElement.type)}
+            {/* todo change this to check box?? */}
             <div>
               <p>Is this field required, default is Yes</p>
               <label>Yes</label>
@@ -111,8 +104,8 @@ class RenderElementCreationForm extends Component {
               <label>No</label>
               <input type="radio" value="false" />
             </div>
-            {this.renderOptions()}
-            {this.renderElementOptions(this.props.selectedElement.options)}
+            {unorderedList(this.state.options)}
+            {this.renderElementOptionsInput(this.props.selectedElement.options)}
             <input className="form-selection-btn" type="submit" value="submit" />
           </form>
         </div >

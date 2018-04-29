@@ -1,15 +1,13 @@
 import React from 'react';
 
-// todo refactor condtional
-// todo change label
 const renderElementList = (list) => {
-  // console.log(list);
   if (list.length > 0) {
     return list.map((item, index) => {
+      const formObj = item;
+      const getElement = item.selectedElement.element;
       return (
         <div key={`${item.label}-${index}`}>
-          {/* todo find a better way */}
-          {item.selectedElement.element(item)}
+          {getElement(formObj)}
         </div>
       );
     })

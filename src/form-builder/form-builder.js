@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { FormSelection } from './form-selection';
 
-import { RenderElementCreationForm } from './element-creation-form';
+import { RenderElementCreationForm } from './element-creation-components/element-creation-form';
 
 import { FormView } from './form-view';
 
@@ -34,7 +34,6 @@ class FormBuilder extends Component {
   handleElementCreation(formState) {
     // todo may not need the callback here, use current state
     // and possibly combine label and element options into selected element object
-    // needs error handling
     this.setState((prevState) => {
       const elementObj = {
         selectedElement: prevState.selectedElement,
@@ -62,7 +61,6 @@ class FormBuilder extends Component {
           />
         </div>
         <div className="form-container">
-          <p>Form Output</p>
           <FormView elementList={this.state.elementList} />
         </div>
       </div>
