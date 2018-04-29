@@ -8,7 +8,6 @@ const renderElementList = (list) => {
     return list.map((item, index) => {
       return (
         <div key={`${item.label}-${index}`}>
-          <p>{item.label}</p>
           {/* todo find a better way */}
           {item.selectedElement.element(item)}
         </div>
