@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
+// todo add name fields and other html properties
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+// todo implement radio input
+// todo modify label 
 const formTagList = (formObj = '') => {
   return [
     {
@@ -15,13 +19,27 @@ const formTagList = (formObj = '') => {
     {
       type: 'Radio List',
       options: true,
-      element: (formObj) => <input type="radio" value="" />,
+      element: (formObj) => {
+        return (
+          <input type="radio" value={formObj.elementOptions[0]} />
+        )
+      },
     },
     {
       type: 'Drop Down List',
       options: true,
       element: (formObj) => {
-        return (<select>{formObj.elementOptions.map(item => <option>{item}</option>)}</select>)
+        return (
+          <select name="">
+            {
+              formObj.elementOptions.map((item, index) => {
+                return (
+                  <option key={`drop-down-options-${index}`} value={item}>{item}</option>
+                )
+              })
+            }
+          </select>
+        )
       },
     },
   ]

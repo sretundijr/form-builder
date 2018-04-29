@@ -15,7 +15,6 @@ class RenderElementCreationForm extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  // todo clear label after submit
   handleLabelChangeEvent(e) {
     this.setState({
       label: e.target.value,
@@ -51,6 +50,7 @@ class RenderElementCreationForm extends Component {
         </div>
       )
     }
+    return '';
   }
 
   renderOptions() {
@@ -58,9 +58,9 @@ class RenderElementCreationForm extends Component {
       return (
         <div>
           <ul>
-            {this.state.options.map((item) => {
+            {this.state.options.map((item, index) => {
               return (
-                <li>{item}</li>
+                <li key={`options-list-${index}`}>{item}</li>
               )
             })}
           </ul>
@@ -78,6 +78,7 @@ class RenderElementCreationForm extends Component {
   }
 
   // todo add option for user to make the field required or not
+  // todo add name field
   render() {
     // console.log(this.state);
     if (this.props.selectedElement) {

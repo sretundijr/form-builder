@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { formTagList } from './form-model';
-
 // todo refactor condtional
+// todo change label
 const renderElementList = (list) => {
   // console.log(list);
   if (list.length > 0) {
