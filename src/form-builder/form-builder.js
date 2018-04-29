@@ -32,7 +32,6 @@ class FormBuilder extends Component {
   }
 
   handleElementCreation(formState) {
-    // e.preventDefault();
     // todo may not need the callback here, use current state
     // and possibly combine label and element options into selected element object
     // needs error handling
@@ -47,6 +46,7 @@ class FormBuilder extends Component {
       }
       return {
         elementList: [...prevState.elementList, elementObj],
+        selectedElement: '',
       }
     });
   }
