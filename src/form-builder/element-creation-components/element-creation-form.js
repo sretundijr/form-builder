@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { unorderedList, textInput } from './form-elements';
+import { unorderedList, inputField } from './form-elements';
 
 // todo submit button need a label??
 // todo add event for required options
@@ -17,6 +17,7 @@ class RenderElementCreationForm extends Component {
     this.handleOptionsChangeEvent = this.handleOptionsChangeEvent.bind(this);
     this.addOption = this.addOption.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleIsRequiredInputChange = this.handleIsRequiredInputChange.bind(this);
   }
 
   handleLabelChangeEvent(e) {
@@ -29,6 +30,14 @@ class RenderElementCreationForm extends Component {
     this.setState({
       option: e.target.value
     })
+  }
+
+  handleIsRequiredInputChange(e) {
+    this.setState((prevState) => {
+      return {
+        requiredField: !prevState.requiredField,
+      };
+    });
   }
 
   // todo need atleast one option for radio or drop list before submission
@@ -62,11 +71,12 @@ class RenderElementCreationForm extends Component {
         name: 'options',
         id: 'options-input',
         value: this.state.option,
-        isRequired: false,
+        required: false,
+        type: 'text',
       }
       return (
         <div>
-          {textInput(inputAttributes, this.handleOptionsChangeEvent)}
+          {inputField(inputAttributes, this.handleOptionsChangeEvent)}
           <button type="button" onClick={this.addOption}>Add</button>
         </div>
       )
@@ -80,13 +90,28 @@ class RenderElementCreationForm extends Component {
       name: 'label',
       id: 'label-input',
       value: this.state.label,
-      isRequired: true,
+      required: true,
+      type: 'text',
     };
-    return textInput(inputAttributes, this.handleLabelChangeEvent);
+    return inputField(inputAttributes, this.handleLabelChangeEvent);
   }
 
-  // todo add option for user to make the field required or not
-  // todo add name field
+  // todo refactor input attribute obj to own function
+  // todo reverse check box row in css to make it look like convention
+  renderIsRequiredCheckBox() {
+    const inputAttributes = {
+      label: 'Is this field required? Defaults to True',
+      name: 'required',
+      id: 'required-field',
+      value: true,
+      required: false,
+      type: 'checkbox',
+      checked: this.state.requiredField,
+    };
+    return inputField(inputAttributes, this.handleIsRequiredInputChange)
+  }
+
+  // todo add name field in user created form
   render() {
     if (this.props.selectedElement) {
       return (
@@ -96,14 +121,7 @@ class RenderElementCreationForm extends Component {
             onSubmit={this.handleFormSubmit}
           >
             {this.renderLabelInput(this.props.selectedElement.type)}
-            {/* todo change this to check box?? */}
-            <div>
-              <p>Is this field required, default is Yes</p>
-              <label>Yes</label>
-              <input type="radio" value="true" />
-              <label>No</label>
-              <input type="radio" value="false" />
-            </div>
+            {this.renderIsRequiredCheckBox()}
             {unorderedList(this.state.options)}
             {this.renderElementOptionsInput(this.props.selectedElement.options)}
             <input className="form-selection-btn" type="submit" value="submit" />

@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import { getAllFormTypes } from './form-model';
-
 import './styles/form-selection.css';
 
 // todo rename file and function names

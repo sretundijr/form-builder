@@ -20,21 +20,17 @@ const unorderedList = (list) => {
   return '';
 }
 
-const textInput = (attributesObj, changeEvent) => {
+const inputField = (attributesObj, changeEvent) => {
   return (
     <div>
       <label htmlFor={attributesObj.id}>{attributesObj.label}</label>
       <input
-        id={attributesObj.id}
-        name={attributesObj.name}
-        type="text"
+        {...attributesObj}
         onChange={changeEvent}
-        value={attributesObj.value}
-        required={attributesObj.isRequired}
       />
     </div>
   )
 }
 
 
-export { unorderedList, textInput };
+export { unorderedList, inputField };
