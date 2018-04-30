@@ -5,7 +5,6 @@ import { unorderedList, inputField } from './form-elements';
 import '../styles/element-creation-form.css';
 
 // todo submit button need a label??
-// todo add event for required options
 class RenderElementCreationForm extends Component {
   constructor(props) {
     super(props);
@@ -104,7 +103,6 @@ class RenderElementCreationForm extends Component {
   }
 
   // todo refactor input attribute obj to own function
-  // todo reverse check box row in css to make it look like convention
   renderIsRequiredCheckBox() {
     const inputAttributes = {
       label: 'Is this field required?',
@@ -118,7 +116,6 @@ class RenderElementCreationForm extends Component {
     return inputField(inputAttributes, this.handleIsRequiredInputChange)
   }
 
-  // todo add name field in user created form
   render() {
     if (this.props.selectedElement) {
       return (
@@ -126,7 +123,7 @@ class RenderElementCreationForm extends Component {
           <form
             onSubmit={this.handleFormSubmit}
           >
-            {this.renderLabelInput(this.props.selectedElement.type)}
+            {this.renderLabelInput(this.props.selectedElement.name)}
             {this.renderIsRequiredCheckBox()}
             {this.renderElementOptionsInput(this.props.selectedElement.options)}
             {unorderedList(this.state.options)}
