@@ -49,5 +49,26 @@ const inputField = (attributesObj, changeEvent) => {
 // todo style this
 const radioInputHeader = (label) => <p>{label}</p>
 
+const dropDownList = (formObj) => {
+  return (
+    <div>
+      <label>{formObj.label}:</label>
+      <select name="">
+        {
+          formObj.options.map((item, index) => {
+            return (
+              <option key={`drop-down-options-${index}`} value={item.value}>{item.value}</option>
+            )
+          })
+        }
+      </select>
+    </div>
+  )
+}
 
-export { unorderedList, inputField, radioInputHeader };
+const formHeader = (formObj) => {
+  return <h2 className="form-header" >{formObj.label}</h2>
+}
+
+
+export { unorderedList, inputField, radioInputHeader, dropDownList, formHeader };
