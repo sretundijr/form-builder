@@ -1,21 +1,23 @@
 import React from 'react';
 
-import { inputField, radioInputHeader } from './element-creation-components/form-elements';
+import { inputField, radioInputHeader, dropDownList, formHeader } from './element-creation-components/form-elements';
 
 // elements can be added here.  the element method gets called from form-view
 // the formObj is created in element-creation-form and passed up to form-builder
 const formTagList = () => {
   return [
     {
-      // todo add type to formObj
-      name: 'Text Input',
+      name: 'Header',
       options: false,
-      element: (formObj) => inputField(formObj, () => { })
+      element: (formObj) => formHeader(formObj),
     },
     {
-      name: 'Submit',
+      name: 'Text Input',
       options: false,
-      element: (formObj) => <button>Submit</button>,
+      element: (formObj) => {
+        formObj.type = 'text';
+        return inputField(formObj, () => { })
+      }
     },
     {
       name: 'Radio Button',
@@ -41,21 +43,13 @@ const formTagList = () => {
       name: 'Drop Down List',
       options: true,
       element: (formObj) => {
-        return (
-          <div>
-            <label>{formObj.label}:</label>
-            <select name="">
-              {
-                formObj.options.map((item, index) => {
-                  return (
-                    <option key={`drop-down-options-${index}`} value={item.value}>{item.value}</option>
-                  )
-                })
-              }
-            </select>
-          </div>
-        )
+        return dropDownList(formObj)
       },
+    },
+    {
+      name: 'Submit',
+      options: false,
+      element: (formObj) => <button>Submit</button>,
     },
   ]
 }
