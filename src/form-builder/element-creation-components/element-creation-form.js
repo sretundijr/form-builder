@@ -119,6 +119,12 @@ class RenderElementCreationForm extends Component {
     return inputField(inputAttributes, this.handleIsRequiredInputChange)
   }
 
+  renderUnorderedList() {
+    if (this.props.selectedElement.hasOptions) {
+      return unorderedList(this.state.options);
+    }
+  }
+
   render() {
     if (this.props.selectedElement) {
       return (
@@ -129,8 +135,7 @@ class RenderElementCreationForm extends Component {
             {this.renderLabelInput(this.props.selectedElement.name)}
             {this.renderIsRequiredCheckBox()}
             {this.renderElementOptionsInput(this.props.selectedElement.hasOptions)}
-            {unorderedList(this.state.options)}
-            {/* todo add label?? or the option to change value?? */}
+            {this.renderUnorderedList()}
             {submitInput()}
           </form>
         </div >
