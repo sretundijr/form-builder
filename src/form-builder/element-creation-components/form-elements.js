@@ -46,8 +46,7 @@ const inputField = (attributesObj, changeEvent) => {
   )
 }
 
-// todo style this
-const radioInputHeader = (label) => <p>{label}</p>
+const radioInputHeader = (label) => <p className="radio-input-header" >{label}</p>
 
 const dropDownList = (formObj) => {
   return (

@@ -43,6 +43,16 @@
   outline: none;
 }
 
+.radio-input-header {
+  text-align: center;
+}
+
+.radio-options-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .options-list-container {
   text-align: center;
   margin: 20px;

@@ -40,7 +40,10 @@ const formTagList = () => {
         return (
           <div>
             {radioInputHeader(formObj.label)}
-            {radioList}
+            {/* create-react-app does not scope css this style is located in form-elements.css */}
+            <div className="radio-options-container" >
+              {radioList}
+            </div>
           </div>
         )
       }
