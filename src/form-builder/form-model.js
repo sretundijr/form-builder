@@ -15,12 +15,12 @@ const formTagList = () => {
   return [
     {
       name: 'Form Title',
-      options: false,
+      hasOptions: false,
       element: (formObj) => formHeader(formObj),
     },
     {
       name: 'Text Input',
-      options: false,
+      hasOptions: false,
       element: (formObj) => {
         formObj.type = 'text';
         return inputField(formObj, () => { })
@@ -28,7 +28,7 @@ const formTagList = () => {
     },
     {
       name: 'Radio Button',
-      options: true,
+      hasOptions: true,
       element: (formObj) => {
         const radioList = formObj.options.map((item) => {
           const attributeObj = {
@@ -51,15 +51,15 @@ const formTagList = () => {
     },
     {
       name: 'Drop Down List',
-      options: true,
+      hasOptions: true,
       element: (formObj) => {
         return dropDownList(formObj)
       },
     },
     {
-      name: 'Submit',
-      options: false,
-      element: (formObj) => submitInput(),
+      name: 'Submit Button',
+      hasOptions: false,
+      element: (formObj) => submitInput(formObj.label),
     },
   ]
 }

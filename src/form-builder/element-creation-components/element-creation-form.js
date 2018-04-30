@@ -40,7 +40,6 @@ class RenderElementCreationForm extends Component {
     });
   }
 
-  // todo need atleast one option for radio or drop list before submission
   handleFormSubmit(e) {
     e.preventDefault();
     const formState = {
@@ -48,10 +47,15 @@ class RenderElementCreationForm extends Component {
       options: this.state.options,
       requiredField: this.state.requiredField,
     }
-    this.setState({
-      label: '',
-      options: [],
-    }, this.props.onSubmit(formState))
+
+    if (this.props.selectedElement.hasOptions && formState.options < 1) {
+      alert('Drop down lists and radio inputs need atleast one option');
+    } else {
+      this.setState({
+        label: '',
+        options: [],
+      }, this.props.onSubmit(formState))
+    }
   }
 
   addOption() {
@@ -122,7 +126,7 @@ class RenderElementCreationForm extends Component {
           >
             {this.renderLabelInput(this.props.selectedElement.name)}
             {this.renderIsRequiredCheckBox()}
-            {this.renderElementOptionsInput(this.props.selectedElement.options)}
+            {this.renderElementOptionsInput(this.props.selectedElement.hasOptions)}
             {unorderedList(this.state.options)}
             {/* todo add label?? or the option to change value?? */}
             {submitInput()}
