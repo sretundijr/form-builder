@@ -69,13 +69,13 @@ const formHeader = (formObj) => {
   return <h2 className="form-header" >{formObj.label}</h2>
 }
 
-const submitInput = () => {
+const submitInput = (value) => {
   return (
     <div className="form-submit-container" >
       <input
         className="form-submit-btn"
         type="submit"
-        value="submit"
+        value={value}
       />
     </div>
   )
