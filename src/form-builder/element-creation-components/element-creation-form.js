@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { unorderedList, inputField } from './form-elements';
 
+import '../styles/element-creation-form.css';
+
 // todo submit button need a label??
 // todo add event for required options
 class RenderElementCreationForm extends Component {
@@ -46,6 +48,7 @@ class RenderElementCreationForm extends Component {
     const formState = {
       label: this.state.label,
       options: this.state.options,
+      requiredField: this.state.requiredField,
     }
     this.setState({
       label: '',
@@ -67,7 +70,7 @@ class RenderElementCreationForm extends Component {
   renderElementOptionsInput(options) {
     if (options) {
       const inputAttributes = {
-        label: 'You have selected a form element that requires options',
+        label: 'You have selected a form element that requires a list options that your user can choose from.',
         name: 'options',
         id: 'options-input',
         value: this.state.option,
@@ -75,9 +78,13 @@ class RenderElementCreationForm extends Component {
         type: 'text',
       }
       return (
-        <div>
+        <div className="add-options-container">
           {inputField(inputAttributes, this.handleOptionsChangeEvent)}
-          <button type="button" onClick={this.addOption}>Add</button>
+          <button
+            className="add-options-btn"
+            type="button"
+            onClick={this.addOption}
+          >Add</button>
         </div>
       )
     }
@@ -100,7 +107,7 @@ class RenderElementCreationForm extends Component {
   // todo reverse check box row in css to make it look like convention
   renderIsRequiredCheckBox() {
     const inputAttributes = {
-      label: 'Is this field required? Defaults to True',
+      label: 'Is this field required?',
       name: 'required',
       id: 'required-field',
       value: true,
@@ -117,14 +124,20 @@ class RenderElementCreationForm extends Component {
       return (
         <div>
           <form
-            className="element-creation-form"
+            // className="element-creation-form"
             onSubmit={this.handleFormSubmit}
           >
             {this.renderLabelInput(this.props.selectedElement.type)}
             {this.renderIsRequiredCheckBox()}
-            {unorderedList(this.state.options)}
             {this.renderElementOptionsInput(this.props.selectedElement.options)}
-            <input className="form-selection-btn" type="submit" value="submit" />
+            {unorderedList(this.state.options)}
+            <div className="form-submit-container" >
+              <input
+                className="form-submit-btn"
+                type="submit"
+                value="submit"
+              />
+            </div>
           </form>
         </div >
       )

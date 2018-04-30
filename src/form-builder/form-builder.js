@@ -39,6 +39,7 @@ class FormBuilder extends Component {
         selectedElement: prevState.selectedElement,
         label: formState.label,
         elementOptions: formState.options,
+        requiredField: formState.requiredField,
       }
       return {
         elementList: [...prevState.elementList, elementObj],
@@ -47,6 +48,7 @@ class FormBuilder extends Component {
     });
   }
 
+  // todo bug fix clear selected item when a user chooses a new element w/o submission
   render() {
     // console.log(this.state);
     return (
