@@ -42,10 +42,10 @@ class FormBuilder extends Component {
 
   // todo bug fix clear selected item when a user chooses a new element w/o submission
   render() {
-    // console.log(this.state);
     return (
       <div className="form-builder-container">
         <div className="tool-box-container">
+          <h3 className="element-selection-header" >Choose from the form components below to start building the form</h3>
           <FormSelection
             list={getAllFormTypes()}
             onClick={this.handleFormComponentSelection}
