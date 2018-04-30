@@ -18,8 +18,7 @@ const formSelectionBtn = (props) => {
 
 const FormSelection = (props) => {
   return (
-    <div>
-      <p>Form Types</p>
+    <div className="element-selection-container" >
       {formSelectionBtn(props)}
     </div>
   );

@@ -1,0 +1,32 @@
+
+.add-options-container {
+  width: 100%;
+  text-align: center;
+}
+
+.add-options-btn {
+  width: 200px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.add-options-btn:focus {
+  outline: none;
+}
+
+.form-submit-container {
+  width: 100%;
+  text-align: center;
+}
+
+.form-submit-btn {
+  width: 400px;
+  margin-top: 40px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+/* todo rafactor shared btn attributes */
+.form-submit-btn:focus {
+  outline: none;
+}
