@@ -50,9 +50,9 @@ const radioInputHeader = (label) => <p className="radio-input-header" >{label}</
 
 const dropDownList = (formObj) => {
   return (
-    <div>
-      <label>{formObj.label}:</label>
-      <select name="">
+    <div className="drop-down-container" >
+      <label className="drop-down-label" >{formObj.label}:</label>
+      <select className="option-container" >
         {
           formObj.options.map((item, index) => {
             return (
