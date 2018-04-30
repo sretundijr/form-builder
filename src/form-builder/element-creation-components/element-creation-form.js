@@ -4,7 +4,6 @@ import { unorderedList, inputField, submitInput } from './form-elements';
 
 import '../styles/element-creation-form.css';
 
-// todo submit button need a label??
 class RenderElementCreationForm extends Component {
   constructor(props) {
     super(props);
@@ -65,7 +64,6 @@ class RenderElementCreationForm extends Component {
     })
   }
 
-  // todo refactor options name isOptions??
   renderElementOptionsInput(options) {
     if (options) {
       const inputAttributes = {

@@ -8,8 +8,9 @@ import {
   submitInput,
 } from './element-creation-components/form-elements';
 
-// elements can be added here.  the element method gets called from form-view
+// elements can be added here. the element method gets called from form-view
 // the formObj is created in element-creation-form and passed up to form-builder
+// see form-elements.js for existing functions that return form components 
 const formTagList = () => {
   return [
     {
