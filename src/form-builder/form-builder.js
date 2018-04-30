@@ -6,10 +6,12 @@ import { RenderElementCreationForm } from './element-creation-components/element
 
 import { FormView } from './form-view';
 
-import { getAllFormTypes, formTagList } from './form-model';
+import { getAllFormTypes, filterByName } from './form-model';
 
 import './styles/form-builder.css';
 
+// todo change selected element, no need to pass the function attached to it around
+// multiply times
 class FormBuilder extends Component {
   constructor(props) {
     super(props);
@@ -21,26 +23,16 @@ class FormBuilder extends Component {
     this.handleElementCreation = this.handleElementCreation.bind(this);
   }
 
-  returnSelectedElement(selection) {
-    return formTagList().filter(item => item.type === selection);
-  }
-
   handleFormComponentSelection(e) {
     this.setState({
-      selectedElement: this.returnSelectedElement(e.target.value)[0],
+      selectedElement: filterByName(e.target.value)[0],
     })
   }
 
   handleElementCreation(formState) {
-    // todo may not need the callback here, use current state
-    // and possibly combine label and element options into selected element object
     this.setState((prevState) => {
-      const elementObj = {
-        selectedElement: prevState.selectedElement,
-        label: formState.label,
-        elementOptions: formState.options,
-        requiredField: formState.requiredField,
-      }
+      const elementObj = Object.assign({}, ...prevState.selectedElement, formState);
+      elementObj.element = prevState.selectedElement.element;
       return {
         elementList: [...prevState.elementList, elementObj],
         selectedElement: '',
