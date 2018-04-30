@@ -52,3 +52,7 @@
   list-style-type: none;
 }
 
+.form-header {
+  text-align: center;
+  margin: 20px;
+}
