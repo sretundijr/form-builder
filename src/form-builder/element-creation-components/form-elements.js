@@ -70,5 +70,24 @@ const formHeader = (formObj) => {
   return <h2 className="form-header" >{formObj.label}</h2>
 }
 
+const submitInput = () => {
+  return (
+    <div className="form-submit-container" >
+      <input
+        className="form-submit-btn"
+        type="submit"
+        value="submit"
+      />
+    </div>
+  )
+}
 
-export { unorderedList, inputField, radioInputHeader, dropDownList, formHeader };
+
+export {
+  unorderedList,
+  inputField,
+  radioInputHeader,
+  dropDownList,
+  formHeader,
+  submitInput,
+};

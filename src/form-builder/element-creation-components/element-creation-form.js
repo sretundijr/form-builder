@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { unorderedList, inputField } from './form-elements';
+import { unorderedList, inputField, submitInput } from './form-elements';
 
 import '../styles/element-creation-form.css';
 
@@ -102,7 +102,6 @@ class RenderElementCreationForm extends Component {
     return inputField(inputAttributes, this.handleLabelChangeEvent);
   }
 
-  // todo refactor input attribute obj to own function
   renderIsRequiredCheckBox() {
     const inputAttributes = {
       label: 'Is this field required?',
@@ -127,13 +126,8 @@ class RenderElementCreationForm extends Component {
             {this.renderIsRequiredCheckBox()}
             {this.renderElementOptionsInput(this.props.selectedElement.options)}
             {unorderedList(this.state.options)}
-            <div className="form-submit-container" >
-              <input
-                className="form-submit-btn"
-                type="submit"
-                value="submit"
-              />
-            </div>
+            {/* todo add label?? or the option to change value?? */}
+            {submitInput()}
           </form>
         </div >
       )
