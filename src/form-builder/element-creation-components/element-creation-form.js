@@ -30,7 +30,7 @@ class RenderElementCreationForm extends Component {
 
   handleOptionsChangeEvent(e) {
     this.setState({
-      option: e.target.value
+      option: e.target.value,
     })
   }
 
@@ -57,7 +57,7 @@ class RenderElementCreationForm extends Component {
   }
 
   addOption() {
-    const currentOption = this.state.option;
+    const currentOption = { value: this.state.option };
     this.setState((prevState) => {
       return {
         options: [...prevState.options, currentOption],
@@ -124,7 +124,6 @@ class RenderElementCreationForm extends Component {
       return (
         <div>
           <form
-            // className="element-creation-form"
             onSubmit={this.handleFormSubmit}
           >
             {this.renderLabelInput(this.props.selectedElement.type)}

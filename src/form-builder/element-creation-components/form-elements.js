@@ -11,7 +11,7 @@ const unorderedList = (list) => {
           {
             list.map((item, index) => {
               return (
-                <li className="options-list" key={`${item}-${index}`}>{item}</li>
+                <li className="options-list" key={`${item.value}-${index}`}>{item.value}</li>
               )
             })
           }
@@ -23,7 +23,7 @@ const unorderedList = (list) => {
 }
 
 const inputField = (attributesObj, changeEvent) => {
-  const isCheckBox = (attributesObj.type === 'checkbox');
+  const isCheckBox = (attributesObj.type === 'checkbox' || attributesObj.type === 'radio');
   const inputContainer = isCheckBox ? 'check-box-container' : 'text-input-container';
   const inputLabel = isCheckBox ? 'check-box-label' : 'text-input-label';
   const input = isCheckBox ? 'check-box-input' : 'text-input';
@@ -46,14 +46,8 @@ const inputField = (attributesObj, changeEvent) => {
   )
 }
 
-// const inputWithBtn = () => {
-//   return (
-//     <div>
-//       {inputField(inputAttributes, this.handleOptionsChangeEvent)}
-//       <button type="button" onClick={this.addOption}>Add</button>
-//     </div>
-//   )
-// }
+// todo style this
+const radioInputHeader = (label) => <p>{label}</p>
 
 
-export { unorderedList, inputField };
+export { unorderedList, inputField, radioInputHeader };
