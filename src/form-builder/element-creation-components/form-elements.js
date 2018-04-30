@@ -28,6 +28,9 @@ const inputField = (attributesObj, changeEvent) => {
   const inputLabel = isCheckBox ? 'check-box-label' : 'text-input-label';
   const input = isCheckBox ? 'check-box-input' : 'text-input';
 
+  const inputAttributes = { ...attributesObj };
+  delete inputAttributes['label'];
+
   return (
     <div
       className={`${inputContainer} input-container`}
@@ -38,7 +41,7 @@ const inputField = (attributesObj, changeEvent) => {
       >{attributesObj.label}
       </label>
       <input
-        {...attributesObj}
+        {...inputAttributes}
         onChange={changeEvent}
         className={input}
       />
@@ -69,7 +72,7 @@ const formHeader = (formObj) => {
   return <h2 className="form-header" >{formObj.label}</h2>
 }
 
-const submitInput = (value) => {
+const submitInput = (value = 'Submit') => {
   return (
     <div className="form-submit-container" >
       <input

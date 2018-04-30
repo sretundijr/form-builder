@@ -30,13 +30,13 @@ const formTagList = () => {
       name: 'Radio Button',
       hasOptions: true,
       element: (formObj) => {
-        const radioList = formObj.options.map((item) => {
+        const radioList = formObj.options.map((item, index) => {
           const attributeObj = {
             type: 'radio',
-            required: formObj.requiredField,
+            required: formObj.required,
             label: item.value,
           }
-          return inputField(attributeObj, () => { })
+          return <div key={`radio-${index}`}>{inputField(attributeObj, () => { })}</div>
         })
         return (
           <div>

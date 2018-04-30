@@ -44,8 +44,10 @@ class RenderElementCreationForm extends Component {
     e.preventDefault();
     const formState = {
       label: this.state.label,
-      options: this.state.options,
-      requiredField: this.state.requiredField,
+      required: this.state.requiredField,
+    }
+    if (this.props.selectedElement.hasOptions) {
+      formState.options = this.state.options;
     }
 
     if (this.props.selectedElement.hasOptions && formState.options < 1) {
