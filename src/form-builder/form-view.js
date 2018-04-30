@@ -2,7 +2,6 @@ import React from 'react';
 
 import './styles/form-view.css';
 
-// todo fix key warning
 const renderElementList = (list) => {
   if (list.length > 0) {
     return list.map((item, index) => {
@@ -20,7 +19,6 @@ const renderElementList = (list) => {
 }
 
 const FormView = (props) => {
-  console.log(props);
   return (
     <div>
       <h3 className="form-view-header" >Form preview</h3>

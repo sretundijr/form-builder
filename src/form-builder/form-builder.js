@@ -45,7 +45,9 @@ class FormBuilder extends Component {
     return (
       <div className="form-builder-container">
         <div className="tool-box-container">
-          <h3 className="element-selection-header" >Choose from the form components below to start building the form</h3>
+          <h3 className="element-selection-header" >
+            Choose from the form components below to start building the form
+          </h3>
           <FormSelection
             list={getAllFormTypes()}
             onClick={this.handleFormComponentSelection}

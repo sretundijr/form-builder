@@ -2,7 +2,6 @@ import React from 'react';
 
 import './styles/form-selection.css';
 
-// todo rename file and function names
 const formSelectionBtn = (props) => {
   return props.list.map(item =>
     <button
