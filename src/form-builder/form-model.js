@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { inputField, radioInputHeader } from './element-creation-components/form-elements';
+
 // todo add name fields and other html properties
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
 // todo add for to label, attribute should match the id of the corresponding form element
@@ -12,45 +14,38 @@ import React from 'react';
 const formTagList = () => {
   return [
     {
-      type: 'Text Input',
+      // todo add type
+      name: 'Text Input',
       options: false,
-      element: (formObj) => {
-        return (
-          <div>
-            <label>{formObj.label}</label>
-            <input type="text" name={formObj.label} />
-          </div>
-        )
-      },
+      element: (formObj) => inputField(formObj, () => { })
     },
     {
-      type: 'Submit',
+      name: 'Submit',
       options: false,
       element: (formObj) => <button>Submit</button>,
     },
     {
-      type: 'Radio List',
+      name: 'Radio Button',
       options: true,
       element: (formObj) => {
+        const radioList = formObj.options.map((item) => {
+          const attributeObj = {
+            type: 'radio',
+            required: formObj.requiredField,
+            label: item.value,
+          }
+          return inputField(attributeObj, () => { })
+        })
         return (
           <div>
-            <p>{formObj.label}</p>
-            {
-              formObj.elementOptions.map((item, index) => {
-                return (
-                  <div key={`radio-element-${index}`}>
-                    <input type="radio" value={item} />
-                    <label>{item}</label>
-                  </div>
-                )
-              })
-            }
+            {radioInputHeader(formObj.label)}
+            {radioList}
           </div>
         )
-      },
+      }
     },
     {
-      type: 'Drop Down List',
+      name: 'Drop Down List',
       options: true,
       element: (formObj) => {
         return (
@@ -58,9 +53,9 @@ const formTagList = () => {
             <label>{formObj.label}:</label>
             <select name="">
               {
-                formObj.elementOptions.map((item, index) => {
+                formObj.options.map((item, index) => {
                   return (
-                    <option key={`drop-down-options-${index}`} value={item}>{item}</option>
+                    <option key={`drop-down-options-${index}`} value={item.value}>{item.value}</option>
                   )
                 })
               }
@@ -73,7 +68,11 @@ const formTagList = () => {
 }
 
 const getAllFormTypes = () => {
-  return formTagList().map(item => item.type);
+  return formTagList().map(item => item.name);
 }
 
-export { getAllFormTypes, formTagList };
+const filterByName = (name) => {
+  return formTagList().filter(item => item.name === name);
+}
+
+export { getAllFormTypes, formTagList, filterByName };
