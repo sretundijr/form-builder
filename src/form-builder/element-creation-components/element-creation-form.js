@@ -69,7 +69,7 @@ class RenderElementCreationForm extends Component {
   renderElementOptionsInput(options) {
     if (options) {
       const inputAttributes = {
-        label: 'You have selected a form element that requires a list options that your user can choose from.',
+        label: 'You have selected a form element that requires a list of options that your vistor can choose from.',
         name: 'options',
         id: 'options-input',
         value: this.state.option,
