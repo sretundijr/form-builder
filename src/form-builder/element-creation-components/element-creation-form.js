@@ -18,6 +18,7 @@ class RenderElementCreationForm extends Component {
     this.addOption = this.addOption.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleIsRequiredInputChange = this.handleIsRequiredInputChange.bind(this);
+    this.handleRemoveOptionEvent = this.handleRemoveOptionEvent.bind(this);
   }
 
   handleLabelChangeEvent(e) {
@@ -30,6 +31,13 @@ class RenderElementCreationForm extends Component {
     this.setState({
       option: e.target.value,
     })
+  }
+
+  handleRemoveOptionEvent() {
+    this.setState((prevState) => {
+      prevState.options.pop();
+      return { options: prevState.options };
+    });
   }
 
   handleIsRequiredInputChange(e) {
@@ -70,6 +78,18 @@ class RenderElementCreationForm extends Component {
     })
   }
 
+  renderRemoveOptionBtn() {
+    if (this.state.options.length > 0) {
+      return (
+        <button
+          type="button"
+          className="add-options-btn"
+          onClick={this.handleRemoveOptionEvent}
+        >Remove Option</button>
+      )
+    }
+  }
+
   renderElementOptionsInput(options) {
     if (options) {
       const inputAttributes = {
@@ -87,7 +107,8 @@ class RenderElementCreationForm extends Component {
             className="add-options-btn"
             type="button"
             onClick={this.addOption}
-          >Add</button>
+          >Add Option</button>
+          {this.renderRemoveOptionBtn()}
         </div>
       )
     }

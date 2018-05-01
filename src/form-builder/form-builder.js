@@ -40,7 +40,6 @@ class FormBuilder extends Component {
     });
   }
 
-  // todo bug fix clear selected item when a user chooses a new element w/o submission
   render() {
     return (
       <div className="form-builder-container">
