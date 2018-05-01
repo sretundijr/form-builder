@@ -4,7 +4,7 @@ import { FormSelection } from './form-selection';
 
 import { RenderElementCreationForm } from './element-creation-components/element-creation-form';
 
-import { FormView } from './form-view';
+import { FormView } from './form-view-components/form-view';
 
 import { getAllFormTypes, filterByName } from './form-model';
 
@@ -21,6 +21,7 @@ class FormBuilder extends Component {
     }
     this.handleFormComponentSelection = this.handleFormComponentSelection.bind(this);
     this.handleElementCreation = this.handleElementCreation.bind(this);
+    this.saveEditedChangesInFormView = this.saveEditedChangesInFormView.bind(this);
   }
 
   handleFormComponentSelection(e) {
@@ -33,11 +34,19 @@ class FormBuilder extends Component {
     this.setState((prevState) => {
       const elementObj = Object.assign({}, ...prevState.selectedElement, formState);
       elementObj.element = prevState.selectedElement.element;
+      elementObj.name = prevState.selectedElement.name;
       return {
         elementList: [...prevState.elementList, elementObj],
         selectedElement: '',
       }
     });
+  }
+
+  saveEditedChangesInFormView(list) {
+    console.log(list)
+    this.setState({
+      elementList: list,
+    })
   }
 
   render() {
@@ -57,7 +66,10 @@ class FormBuilder extends Component {
           />
         </div>
         <div className="form-container">
-          <FormView elementList={this.state.elementList} />
+          <FormView
+            elementList={this.state.elementList}
+            saveChanges={this.saveEditedChangesInFormView}
+          />
         </div>
       </div>
     );

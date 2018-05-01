@@ -22,6 +22,10 @@ const unorderedList = (list) => {
   return '';
 }
 
+const inputFieldNoLabel = (currentVal, callback) => {
+  return <input className="text-input" onChange={callback} value={currentVal} />
+}
+
 const inputField = (attributesObj, changeEvent) => {
   const isCheckBox = (attributesObj.type === 'checkbox' || attributesObj.type === 'radio');
   const inputContainer = isCheckBox ? 'check-box-container' : 'text-input-container';
@@ -92,4 +96,5 @@ export {
   dropDownList,
   formHeader,
   submitInput,
+  inputFieldNoLabel,
 };
