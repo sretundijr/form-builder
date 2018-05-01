@@ -10,8 +10,6 @@ import { getAllFormTypes, filterByName } from './form-model';
 
 import './styles/form-builder.css';
 
-// todo change selected element, no need to pass the function attached to it around
-// multiply times
 class FormBuilder extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +41,6 @@ class FormBuilder extends Component {
   }
 
   saveEditedChangesInFormView(list) {
-    console.log(list)
     this.setState({
       elementList: list,
     })

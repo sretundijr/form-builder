@@ -25,22 +25,6 @@ class FormView extends Component {
     }
   }
 
-  renderElementList(list) {
-    if (list.length > 0) {
-      return list.map((item, index) => {
-        const formObj = { ...item };
-        const getElement = item.element;
-        delete formObj['element'];
-        return (
-          <div key={`${item.label}-${index}`}>
-            {getElement(formObj)}
-          </div>
-        );
-      })
-    }
-    return '';
-  }
-
   handleUserSelectedElementEvent(elementObj, index) {
     this.setState({
       element: elementObj,
@@ -94,7 +78,7 @@ class FormView extends Component {
       if (this.state.element.options) {
         const optionsList = this.state.element.options.map((item, index) => {
           return (
-            <div className="edit-label-container">
+            <div key={`edit-option-${index}`} className="edit-label-container">
               {inputFieldNoLabel(item.value, (e) => this.onOptionsChange(e, index))}
             </div>
           )
@@ -125,6 +109,7 @@ class FormView extends Component {
       const buttonList = this.state.elementList.map((item, index) => {
         return (
           <button
+            key={`element-btn-${index}`}
             type="button"
             className="edit-component-btn"
             onClick={() => this.handleUserSelectedElementEvent(item, index)}
@@ -140,6 +125,22 @@ class FormView extends Component {
           </div>
         </div>
       )
+    }
+    return '';
+  }
+
+  renderElementList(list) {
+    if (list.length > 0) {
+      return list.map((item, index) => {
+        const formObj = { ...item };
+        const getElement = item.element;
+        delete formObj['element'];
+        return (
+          <div key={`${item.label}-${index}`}>
+            {getElement(formObj)}
+          </div>
+        );
+      })
     }
     return '';
   }
