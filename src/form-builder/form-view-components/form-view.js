@@ -76,44 +76,46 @@ class FormView extends Component {
     }, this.state.saveChanges(this.state.elementList))
   }
 
+  renderSaveButton() {
+    return (
+      <div className="button-list-container" >
+        <button
+          type="button"
+          className="edit-component-btn"
+          onClick={this.saveEditedChanges}
+        >Save Changes</button>
+      </div>
+    )
+  }
+
   renderEditForm() {
     if (this.state.isEditing) {
+      let optionsContainer = '';
       if (this.state.element.options) {
         const optionsList = this.state.element.options.map((item, index) => {
-          return inputFieldNoLabel(item.value, (e) => this.onOptionsChange(e, index))
+          return (
+            <div className="edit-label-container">
+              {inputFieldNoLabel(item.value, (e) => this.onOptionsChange(e, index))}
+            </div>
+          )
         })
-        return (
+        optionsContainer = (
           <div>
-            <p>label</p>
-            {inputFieldNoLabel(this.state.element.label, this.onLabelChange)}
-            <div>
-              <p>Options</p>
-              {optionsList}
-            </div>
-            <div>
-              <button
-                type="button"
-                className="add-options-btn"
-                onClick={this.saveEditedChanges}
-              >Save Changes</button>
-            </div>
-          </div>
-        )
-      } else {
-        return (
-          <div>
-            <p>label</p>
-            {inputFieldNoLabel(this.state.element.label, this.onLabelChange)}
-            <div>
-              <button
-                type="button"
-                className="add-options-btn"
-                onClick={this.saveEditedChanges}
-              >Save Changes</button>
-            </div>
+            <h4 className="component-list-header">Options</h4>
+            {optionsList}
           </div>
         )
       }
+      return (
+        <div>
+          <h4 className="component-list-header" >Form Component Label</h4>
+          <div className="edit-label-container">
+            {inputFieldNoLabel(this.state.element.label, this.onLabelChange)}
+          </div>
+          {optionsContainer ? optionsContainer : ''}
+          {this.renderSaveButton()}
+        </div>
+      )
     }
     return '';
   }
@@ -124,7 +126,7 @@ class FormView extends Component {
         return (
           <button
             type="button"
-            className="add-options-btn"
+            className="edit-component-btn"
             onClick={() => this.handleUserSelectedElementEvent(item, index)}
             value={item.name}
           >{item.name}</button>
@@ -132,8 +134,10 @@ class FormView extends Component {
       })
       return (
         <div>
-          <h4>Edit</h4>
-          {buttonList}
+          <h4 className="component-list-header" >Select a form component to Edit</h4>
+          <div className="button-list-container" >
+            {buttonList}
+          </div>
         </div>
       )
     }
